@@ -307,7 +307,7 @@ PostgreSQL Database
 
 # 👨‍💻 Developer
 
-**Shiv.v**
+**Shiv.V**
 
 
 ---
