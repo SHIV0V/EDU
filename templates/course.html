@@ -13,7 +13,7 @@
         </div>
         <nav>
             <ul>
-                <!-- Updated Navigation Links -->
+                
                 <li><a href="{{ url_for('about_page') }}" onclick="redirectTo(event, '{{ url_for('about_page') }}')">About</a></li>
                 <li><a href="{{ url_for('help_page') }}" onclick="redirectTo(event, '{{ url_for('help_page') }}')">Help</a></li>
                 <li><a href="{{ url_for('support_page') }}" onclick="redirectTo(event, '{{ url_for('support_page') }}')">Support</a></li>
@@ -102,14 +102,15 @@
         <p>The right choice today, a brighter tomorrow.</p>
     </footer>
 
-    <!-- Add the redirectTo function -->
+   
     <script>
         function redirectTo(event, url) {
-            event.preventDefault();  // Prevent default navigation
-            window.location.href = url;  // Redirect to the specified URL
+            event.preventDefault();  
+            window.location.href = url;  
         }
     </script>
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
+
