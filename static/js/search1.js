@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    console.log("JavaScript Loaded!"); // Debugging
+    console.log("JavaScript Loaded!"); 
 
     const searchButton = document.querySelector(".search-btn");
     const closeButton = document.querySelector(".close-btn");
@@ -10,9 +10,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const searchedResultContainer = document.querySelector(".searched-result");
     const relevantResultsContainer = document.querySelector(".relevant-results-grid");
-    const searchedResultSection = document.getElementById("searchedResultSection"); // Added: Get the searched result section
+    const searchedResultSection = document.getElementById("searchedResultSection"); 
 
-    // Initially hide both the result containers
+    
     searchedResultContainer.style.display = "none";
     relevantResultsContainer.style.display = "none";
 
@@ -52,13 +52,13 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log("Search results:", resultData);
     
             if (resultData.professions.length > 0) {
-                searchMessage.innerHTML = ""; // Clear previous results
+                searchMessage.innerHTML = ""; 
                 resultData.professions.forEach(prof => {
                     const resultItem = document.createElement("div");
                     resultItem.classList.add("search-result");
                     resultItem.setAttribute("data-id", prof.id);
                     resultItem.innerText = prof.name;
-                    searchMessage.appendChild(resultItem); // Append new results
+                    searchMessage.appendChild(resultItem); 
                 });
                 supportButton.style.display = "none";
             } else {
@@ -91,16 +91,16 @@ document.addEventListener("DOMContentLoaded", function () {
                     return;
                 }
 
-                // Display the searched profession result (main profession) in searched-result
+                // Display the searched profession result 
                 searchedResultContainer.querySelector(".img2").src = profession.image ? `/image/${professionId}` : "default-placeholder.png";
                 searchedResultContainer.querySelector(".text2").innerText = profession.name;
                 searchedResultContainer.querySelector(".hidden-para2").innerText = profession.description;
 
                 // Set the data-id attribute for the "Read more" button
                 const readMoreButton = searchedResultContainer.querySelector(".hidden-btn2");
-                readMoreButton.setAttribute("data-id", professionId); // Add this line
+                readMoreButton.setAttribute("data-id", professionId); 
 
-                searchedResultContainer.style.display = "block"; // Show the searched result
+                searchedResultContainer.style.display = "block"; 
 
                 // Fetch relevant professions
                 const relevantResponse = await fetch(`/get_relevant_data?profession_id=${encodeURIComponent(professionId)}`);
@@ -109,20 +109,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.log("Fetched relevant professions:", relevantData);
 
                 if (relevantData.length > 0) {
-                    // Ensure relevantResultsContainer exists
+                    
                     if (!relevantResultsContainer) {
                         console.error("Error: relevantResultsContainer not found in the HTML!");
                         return;
                     }
 
-                    // Clear previous relevant results
+                    
                     relevantResultsContainer.innerHTML = "";
 
                     // Apply flexbox to display relevant results side by side
                     relevantResultsContainer.style.display = "flex";
                     relevantResultsContainer.style.flexWrap = "wrap";
-                    relevantResultsContainer.style.justifyContent = "center"; // Centers items horizontally
-                    relevantResultsContainer.style.gap = "15px"; // Adjust spacing between items
+                    relevantResultsContainer.style.justifyContent = "center"; 
+                    relevantResultsContainer.style.gap = "15px"; 
 
                     // Display relevant professions, each in its own purple-container2
                     relevantData.forEach(relevantProfession => {
@@ -141,14 +141,14 @@ document.addEventListener("DOMContentLoaded", function () {
                         relevantResultsContainer.appendChild(relevantProfessionContainer);
                     });
 
-                    relevantResultsContainer.style.display = ""; // Show the relevant results
+                    relevantResultsContainer.style.display = ""; 
                 } else {
                     relevantResultsContainer.innerHTML = "<p>No relevant data found.</p>";
-                    relevantResultsContainer.style.display = "block"; // Show even if no relevant data
+                    relevantResultsContainer.style.display = "block"; 
                 }
 
                 // Auto-scroll to the searched result section
-                searchedResultSection.scrollIntoView({ behavior: "smooth", block: "start" }); // Added: Smooth scroll to the section
+                searchedResultSection.scrollIntoView({ behavior: "smooth", block: "start" }); 
             } catch (error) {
                 console.error("Error fetching profession details:", error);
             }
