@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Categories</title>
     <style>
-        /* General Styles */
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
@@ -259,9 +259,9 @@
         </div>
     </div>
 
-    <!-- Results Container -->
+   
     <div class="results-container" id="resultsContainer">
-        <!-- Results will be dynamically added here -->
+        
     </div>
 
     <footer>
@@ -269,7 +269,7 @@
     </footer>
 
     <script>
-        // Function to fetch and display results based on type
+        
         async function fetchResults(type) {
             try {
                 const response = await fetch(`/get_results?type=${type}`);
@@ -293,10 +293,10 @@
                         resultsContainer.appendChild(resultCard);
                     });
 
-                    // Scroll down a little after showing results
+                    
                     window.scrollBy({
-                        top: 300, // Scroll down by 300 pixels
-                        behavior: 'smooth' // Smooth scrolling
+                        top: 300, 
+                        behavior: 'smooth' 
                     });
                 } else {
                     resultsContainer.innerHTML = "<p>No results found.</p>";
@@ -306,7 +306,7 @@
             }
         }
 
-        // Function to redirect to details page
+        
         function redirectToDetails(id) {
             window.location.href = `/details?id=${id}`;
         }
