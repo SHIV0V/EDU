@@ -1,12 +1,12 @@
 # 🎓 EDU(SPARK) - Career Search & Recommendation Platform
 
-A full-stack web application built using **Flask**, **PostgreSQL**, **HTML**, **CSS**, and **JavaScript** that helps students explore careers, courses, and educational pathways through an interactive and user-friendly platform.
+A full-stack web application built using **Flask**, **PostgreSQL**, **HTML**, **CSS**, and **JavaScript** that helps students explore careers, courses, educational pathways, and related professions through an interactive and user-friendly platform.
 
 ---
 
-# 📖 About the Project
+# 📖 About
 
-Choosing the right career can be challenging. EDU was developed to simplify career exploration by providing a centralized platform where students can search professions, explore related career options, browse categories, and learn about possible transition pathways.
+Choosing the right career is one of the biggest challenges students face. EDU was developed to simplify this process by providing a centralized platform where users can search professions, explore related career opportunities, browse career categories, and discover possible career transition pathways.
 
 The application combines a responsive frontend with a Flask backend and PostgreSQL database to deliver dynamic search, recommendation, and information retrieval features.
 
@@ -20,7 +20,7 @@ The application combines a responsive frontend with a Flask backend and PostgreS
 - 📈 Top Searched Careers
 - 🎯 Career Categories
 - 🔄 Career Transition Pathways
-- 🤖 Smart Advisor Module
+- 🤖 Smart Advisor
 - 📧 Support & Contact System
 - 🗄 PostgreSQL Database Integration
 - ⚡ REST API Powered Backend
@@ -34,10 +34,10 @@ The application combines a responsive frontend with a Flask backend and PostgreS
 - PostgreSQL Relational Database
 - SQLAlchemy ORM
 - Dynamic Search Functionality
-- Responsive User Interface
+- Interactive User Interface
 - Email Support Integration
 - Career Recommendation System
-- Clean and Modular Project Structure
+- Modular Project Structure
 
 ---
 
@@ -69,95 +69,62 @@ The application combines a responsive frontend with a Flask backend and PostgreS
 # 🚀 Main Modules
 
 ### 🔍 Explorer
-Search professions and explore detailed career information.
-
-### 📚 Categories
-Browse professions, courses, colleges, and examinations.
+Search careers and view detailed profession information.
 
 ### 🤖 Smart Advisor
-Guides users in exploring suitable career options.
+Provides career guidance based on user exploration.
+
+### 📚 Categories
+Browse careers, courses, colleges, and examinations.
 
 ### 🔄 Transition Pathway
-Helps users understand possible transitions between careers.
+Explore possible career transition opportunities.
 
 ### 📄 Profession Details
-Displays detailed information about a selected profession along with related career suggestions.
+Displays detailed profession information along with related careers.
 
 ### 📧 Support System
-Allows users to submit support requests and receive email confirmations.
+Allows users to submit support requests and receive confirmation emails.
 
 ---
 
-# 💾 Database Design
+# 💾 Database
 
-The application uses PostgreSQL with relational database tables to manage:
+The application uses PostgreSQL to manage:
 
 - Profession Information
 - Related Professions
-- External Career Links
+- External Links
 - User Support Requests
 
 ---
 
-# 📷 Application Screenshots
+# 📷 Application Preview
 
-## 🏠 Home Page
+<p align="center">
+<img src="Screenshots/pic1.jpeg" width="45%">
+<img src="Screenshots/pic2.jpeg" width="45%">
+</p>
 
-![Home](Screenshots/pic1.jpeg)
+<p align="center">
+<img src="Screenshots/pic3.jpeg" width="45%">
+<img src="Screenshots/pic4.jpeg" width="45%">
+</p>
 
----
+<p align="center">
+<img src="Screenshots/pic5.jpeg" width="45%">
+<img src="Screenshots/pic6.jpeg" width="45%">
+</p>
 
-## 🔍 Career Search
+<p align="center">
+<img src="Screenshots/pic7.jpeg" width="45%">
+<img src="Screenshots/pic8.jpeg" width="45%">
+</p>
 
-![Career Search](Screenshots/pic2.jpeg)
-
----
-
-## 📄 Profession Details
-
-![Profession Details](Screenshots/pic3.jpeg)
-
----
-
-## 📚 Categories
-
-![Categories](Screenshots/pic4.jpeg)
-
----
-
-## 🤖 Smart Advisor
-
-![Smart Advisor](Screenshots/pic5.jpeg)
-
----
-
-## 🔄 Transition Pathway
-
-![Transition Pathway](Screenshots/pic6.jpeg)
-
----
-
-## 📈 Top Searches
-
-![Top Searches](Screenshots/pic7.jpeg)
-
----
-
-## 📧 Support Page
-
-![Support](Screenshots/pic8.jpeg)
-
----
-
-## ℹ️ About Page
-
-![About](Screenshots/pic9.jpeg)
-
----
-
-## ❓ Help Page
-
-![Help](Screenshots/pic10.jpeg)
+<p align="center">
+<img src="Screenshots/pic9.jpeg" width="45%">
+<img src="Screenshots/pic10.jpeg" width="45%">
+</p>
 
 ---
 
@@ -185,27 +152,25 @@ EDU/
 
 # ⚙️ Installation
 
-### Clone the repository
+Clone the repository
 
 ```bash
 git clone https://github.com/SHIV0V/EDU.git
 ```
 
-### Navigate into the project
+Move into the project folder
 
 ```bash
 cd EDU
 ```
 
-### Install dependencies
+Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Configure Environment Variables
-
-Create a `.env` file in the project root and configure the following variables:
+Create a `.env` file
 
 ```env
 DATABASE_URL=your_database_url
@@ -214,7 +179,7 @@ MAIL_USERNAME=your_email
 MAIL_PASSWORD=your_app_password
 ```
 
-### Run the application
+Run the application
 
 ```bash
 python app1.py
@@ -229,8 +194,8 @@ python app1.py
 - REST API Development
 - PostgreSQL Database Design
 - SQLAlchemy ORM
-- JavaScript DOM Manipulation
 - Dynamic Search Implementation
+- JavaScript DOM Manipulation
 - Responsive UI Development
 - Email Integration
 - Backend & Frontend Integration
@@ -240,12 +205,11 @@ python app1.py
 # 🚀 Future Enhancements
 
 - AI-Based Career Recommendation
-- User Authentication & Authorization
+- User Authentication
 - Admin Dashboard
 - Resume Recommendation System
-- University Recommendation Module
 - Cloud Deployment
-- Mobile Responsive Enhancements
+- Mobile Responsive Design
 - Analytics Dashboard
 
 ---
@@ -254,12 +218,9 @@ python app1.py
 
 **Shiv.v**
 
-**M.Sc. Information Technology**
-
-GitHub: https://github.com/SHIV0V
 
 ---
 
-## 📌 Note
+## 📄 License
 
-This project was developed as a full-stack academic project to demonstrate backend development, frontend development, database design, REST API implementation, and user interface development using Flask and PostgreSQL.
+This project is intended for educational purposes.
