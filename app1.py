@@ -2,8 +2,8 @@ from flask import Flask, render_template, request, jsonify, Response, redirect, 
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import os
-from urllib.parse import urlparse  # For URL parsing
-import re  # For URL detection
+from urllib.parse import urlparse  
+import re  
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -45,25 +45,25 @@ class Profession(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False, index=True)
     big_description = db.Column(db.Text, nullable=True)
-    description = db.Column(db.Text, nullable=True)  # Renamed: description -> big_description
+    description = db.Column(db.Text, nullable=True) 
     jobs = db.Column(db.Text, nullable=True)
     relevant = db.Column(db.Text, nullable=True)
     image = db.Column(db.LargeBinary, nullable=True)
     no_of_searches = db.Column(db.Integer, default=0)
-    offered_by = db.Column(db.String(255), nullable=True)  # Added: Offered by
-    expected_salary = db.Column(db.String(255), nullable=True)  # Added: Expected salary
-    know_more = db.Column(db.Text, nullable=True)  # Added: Know more
-    type = db.Column(db.String(2), nullable=False)  # Added: Type (c, cl, e, j)
-    average_fee = db.Column(db.String(255), nullable=True)  # Added: Average Fee
+    offered_by = db.Column(db.String(255), nullable=True)  
+    expected_salary = db.Column(db.String(255), nullable=True)  
+    know_more = db.Column(db.Text, nullable=True)  
+    type = db.Column(db.String(2), nullable=False)  
+    average_fee = db.Column(db.String(255), nullable=True)  
 
 # Link model
 class Link(db.Model):
     __tablename__ = 'link'
 
     id = db.Column(db.Integer, primary_key=True)
-    name_id = db.Column(db.Integer, db.ForeignKey('professions.id'), nullable=False)  # Foreign key to professions table
-    sub_column = db.Column(db.String(255), nullable=False)  # Sub-column name
-    link = db.Column(db.String(255), nullable=False)  # Link URL
+    name_id = db.Column(db.Integer, db.ForeignKey('professions.id'), nullable=False) 
+    sub_column = db.Column(db.String(255), nullable=False)  
+    link = db.Column(db.String(255), nullable=False)  
 
     profession = db.relationship('Profession', foreign_keys=[name_id], backref='links')
 
@@ -81,8 +81,8 @@ class ProfessionRelations(db.Model):
 # Function to send email
 def send_email(to_email, subject, body):
     try:
-        print("Starting email function...")  # Debugging
-        print(f"Sending email to: {to_email}")  # Debugging
+        print("Starting email function...")  
+        print(f"Sending email to: {to_email}")  
 
         msg = MIMEMultipart()
         msg['From'] = app.config['MAIL_USERNAME']
@@ -91,15 +91,15 @@ def send_email(to_email, subject, body):
         msg.attach(MIMEText(body, 'plain'))
 
         with smtplib.SMTP(app.config['MAIL_SERVER'], app.config['MAIL_PORT']) as server:
-            print("Connecting to SMTP server...")  # Debugging
+            print("Connecting to SMTP server...")  
             server.starttls()
             server.login(app.config['MAIL_USERNAME'], app.config['MAIL_PASSWORD'])
-            print("Login successful!")  # Debugging
+            print("Login successful!")  
             server.send_message(msg)
-            print("Email sent successfully!")  # Debugging
+            print("Email sent successfully!")  g
         return True
     except Exception as e:
-        print(f"Error sending email: {e}")  # Debugging
+        print(f"Error sending email: {e}")  
         return False
 
 # Route to save support data
@@ -117,11 +117,11 @@ def save_support_data():
         new_entry = Gmail(gmail=email, query=description)
         db.session.add(new_entry)
         db.session.commit()
-        print("✅ Data saved to database.")  # Debug Log
+        print("✅ Data saved to database.")  
         return jsonify({'success': True}), 200
     except Exception as e:
         db.session.rollback()
-        print(f"❌ Database Error: {e}")  # Debug Log
+        print(f"❌ Database Error: {e}") 
         return jsonify({'success': False, 'error': str(e)}), 500
 
 # Route to send support email
@@ -141,12 +141,12 @@ def send_support_email():
         email_sent = send_email(email, subject, body)
 
         if email_sent:
-            print("📤 Email sent successfully!")  # Debug Log
+            print("📤 Email sent successfully!")  
             return jsonify({'success': True}), 200
         else:
             return jsonify({'success': False, 'error': 'Failed to send email'}), 500
     except Exception as e:
-        print(f"❌ Email Error: {e}")  # Debug Log
+        print(f"❌ Email Error: {e}")  
         return jsonify({'success': False, 'error': str(e)}), 500
 
 # Routes (existing routes remain unchanged)
@@ -217,16 +217,16 @@ def search_professions():
             {
                 'id': p.id, 
                 'name': p.name, 
-                'big_description': p.big_description,  # Updated: description -> big_description
+                'big_description': p.big_description,  
                 'description': p.description,
                 'jobs': p.jobs,   
                 'relevant': p.relevant,            
                 'image': f"/image/{p.id}" if p.image else None,
-                'offered_by': p.offered_by,  # Added: Offered by
-                'expected_salary': p.expected_salary,  # Added: Expected salary
-                'know_more': p.know_more,  # Added: Know more
-                'type': p.type,  # Added: Type
-                'average_fee': p.average_fee  # Added: Average Fee
+                'offered_by': p.offered_by,  
+                'expected_salary': p.expected_salary,  
+                'know_more': p.know_more,  
+                'type': p.type,  
+                'average_fee': p.average_fee  
             }
             for p in results.items
         ],
@@ -258,16 +258,16 @@ def get_profession():
     return jsonify({
         'id': profession.id,
         'name': profession.name,
-        'big_description': profession.big_description,  # Updated: description -> big_description
+        'big_description': profession.big_description,  
         'description': profession.description,
         'jobs': profession.jobs,
         'relevant': profession.relevant,
         'image': f"/image/{profession.id}" if profession.image else None,
-        'offered_by': profession.offered_by,  # Added: Offered by
-        'expected_salary': profession.expected_salary,  # Added: Expected salary
-        'know_more': profession.know_more,  # Added: Know more
-        'type': profession.type,  # Added: Type
-        'average_fee': profession.average_fee  # Added: Average Fee
+        'offered_by': profession.offered_by,  
+        'expected_salary': profession.expected_salary,  
+        'know_more': profession.know_more,  
+        'type': profession.type, 
+        'average_fee': profession.average_fee  
     })
 
 @app.route('/get_relevant_data', methods=['GET'])
@@ -285,13 +285,13 @@ def get_relevant_data():
         'image': f"/image/{rel.related_profession.id}" if rel.related_profession.image else 'default-placeholder.png',
         'description': rel.related_profession.description,
         'big_description': rel.related_profession.big_description,
-        'jobs': rel.related_profession.jobs,  # Updated: description -> big_description
-        'offered_by': rel.related_profession.offered_by,  # Added: Offered by
+        'jobs': rel.related_profession.jobs,  
+        'offered_by': rel.related_profession.offered_by,  
         'relevant': rel.related_profession.relevant,
-        'expected_salary': rel.related_profession.expected_salary,  # Added: Expected salary
-        'know_more': rel.related_profession.know_more,  # Added: Know more
-        'type': rel.related_profession.type,  # Added: Type
-        'average_fee': rel.related_profession.average_fee  # Added: Average Fee
+        'expected_salary': rel.related_profession.expected_salary,  
+        'know_more': rel.related_profession.know_more,  
+        'type': rel.related_profession.type,  
+        'average_fee': rel.related_profession.average_fee  
     } for rel in relevant_professions])
 
 @app.route('/image/<int:profession_id>')
@@ -309,7 +309,7 @@ def submit_support():
     email = request.form.get('email', '').strip()
     description = request.form.get('description', '').strip()
 
-    print(f"📩 Form Submitted | Email: {email}, Description: {description}")  # Debug Log
+    print(f"📩 Form Submitted | Email: {email}, Description: {description}")  
 
     if not email or not description:
         flash('All fields are required!', 'error')
@@ -320,14 +320,13 @@ def submit_support():
         new_entry = Gmail(gmail=email, query=description)
         db.session.add(new_entry)
         db.session.commit()
-        print("✅ Data saved to database.")  # Debug Log
-
+        print("✅ Data saved to database.")  
         # Send confirmation email
         subject = "Thank you for contacting us!"
         body = f"Thank you for reaching out! We have received your query:\n\n{description}\n\nWe will get back to you soon."
 
         email_sent = send_email(email, subject, body)
-        print(f"📤 Email Sent Status: {email_sent}")  # Debug Log
+        print(f"📤 Email Sent Status: {email_sent}")  
 
         if email_sent:
             flash('Thank you! Your request has been received. We will get back to you soon.', 'success')
@@ -336,7 +335,7 @@ def submit_support():
 
     except Exception as e:
         db.session.rollback()
-        print(f"❌ Database Error: {e}")  # Debug Log
+        print(f"❌ Database Error: {e}")  
         flash('An error occurred. Please try again later.', 'error')
 
     return redirect(url_for('support_page')) 
@@ -350,7 +349,7 @@ def get_relevant_courses():
 
 @app.route('/details')
 def details():
-    profession_id = request.args.get('id')  # Get the profession ID from the query parameter
+    profession_id = request.args.get('id')  
     if not profession_id:
         return "Profession ID not provided.", 400
 
@@ -379,16 +378,16 @@ def get_results():
     return jsonify([{
         'id': p.id,
         'name': p.name,
-        'big_description': p.big_description,  # Updated: description -> big_description
+        'big_description': p.big_description,  
         'description': p.description,
         'jobs': p.jobs,
         'relevant': p.relevant,
         'image': f"/image/{p.id}" if p.image else 'default-placeholder.png',
-        'offered_by': p.offered_by,  # Added: Offered by
-        'expected_salary': p.expected_salary,  # Added: Expected salary
-        'know_more': p.know_more,  # Added: Know more
-        'type': p.type,  # Added: Type
-        'average_fee': p.average_fee  # Added: Average Fee
+        'offered_by': p.offered_by,  
+        'expected_salary': p.expected_salary,  
+        'know_more': p.know_more,  
+        'type': p.type,  
+        'average_fee': p.average_fee 
     } for p in professions])
 
 @app.route('/get_top_searches', methods=['GET'])
