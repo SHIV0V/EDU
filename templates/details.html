@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Details Page</title>
     <style>
-        /* General Styles */
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
@@ -20,7 +20,7 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Header Styles */
+        
         header {
             background-color: rgba(0, 0, 0, 0.7);
             color: white;
@@ -62,9 +62,9 @@
             color: #333;
         }
 
-        /* Details Page Styles */
+        
         .details-container {
-            max-width: 1400px; /* Wider container */
+            max-width: 1400px; 
             margin: 50px auto;
             padding: 20px;
             background: #222;
@@ -72,11 +72,11 @@
             box-shadow: 0 8px 16px rgba(255, 223, 0, 0.5);
             color: #f4f4f4;
             display: flex;
-            gap: 30px; /* Space between image and content */
+            gap: 30px; 
         }
 
         .details-image {
-            flex: 1; /* Take up 1 part of the container */
+            flex: 1; 
         }
 
         .details-image img {
@@ -87,10 +87,10 @@
         }
 
         .details-content {
-            flex: 2; /* Take up 2 parts of the container */
+            flex: 2; 
             display: flex;
             flex-direction: column;
-            gap: 20px; /* Space between sections */
+            gap: 20px; 
         }
 
         .details-big_description {
@@ -124,7 +124,7 @@
             color: #f8c81c;
         }
 
-        /* Back Button */
+        
         .back-btn {
             background: #f0db4f;
             color: #333;
@@ -141,7 +141,7 @@
             background: #f8c81c;
         }
 
-        /* Footer Styles */
+        
         footer {
             background-color: #333;
             color: white;
@@ -187,49 +187,49 @@
     </header>
 
     <div class="details-container">
-        <!-- Image Placeholder -->
+        
         <div class="details-image">
             <img id="detailsImage" src="{{ profession.image if profession.image else url_for('static', filename='default-placeholder.png') }}" alt="Profession Image">
         </div>
 
-        <!-- Content Placeholder -->
+        
         <div class="details-content">
-            <!-- Back Button -->
+            
             <button id="backButton" class="back-btn" onclick="window.history.back()">Back</button>
 
-            <!-- Name Placeholder -->
+            
             <h1 id="detailsName">{{ profession.name }}</h1>
 
-            <!-- Description Placeholder -->
+            
             <div class="details-big_description">
                 <p id="detailsDescription">{{ profession.big_description }}</p>
             </div>
 
-            <!-- Offered By Section -->
+            
             <div class="details-section" id="offeredBySection">
                 <h2>Offered By:</h2>
                 <p id="detailsOfferedBy">{{ profession.offered_by }}</p>
             </div>
 
-            <!-- Expected Salary Section -->
+            
             <div class="details-section" id="salarySection">
                 <h2>Expected Salary:</h2>
                 <p id="detailsSalary">{{ profession.expected_salary }}</p>
             </div>
 
-            <!-- Jobs Section -->
+            
             <div class="details-section" id="jobs">
                 <h2>Jobs:</h2>
                 <p id="detailsJobs">{{ profession.jobs }}</p>
             </div>
 
-            <!-- Average Fee Section -->
+            
             <div class="details-section" id="feeSection">
                 <h2>Average Fee:</h2>
                 <p id="detailsFee">{{ profession.average_fee }}</p>
             </div>
 
-            <!-- Course Offered Section -->
+            
             <div class="details-section" id="relevant">
                 <h2>Course Offered:</h2>
                 <p id="detailsCourse">{{ profession.relevant }}</p>
@@ -237,7 +237,7 @@
              
             </div>
 
-            <!-- Know More Section -->
+            
             <div class="details-section" id="knowMoreSection">
                 <h2>Know More:</h2>
                 {% if links %}
@@ -259,7 +259,7 @@
     </footer>
 
     <script>
-        // Function to check if a string is a valid URL
+        
         function isValidUrl(string) {
             try {
                 new URL(string);
@@ -269,40 +269,40 @@
             }
         }
 
-        // Function to populate the "Know More" section
+        
         function populateKnowMoreSection(knowMoreValue) {
             const knowMoreElement = document.getElementById("detailsKnowMore");
             if (knowMoreValue) {
                 if (isValidUrl(knowMoreValue)) {
-                    // If it's a valid URL, render as a clickable link
+                    
                     knowMoreElement.innerHTML = `<a href="${knowMoreValue}" target="_blank">${knowMoreValue}</a>`;
                 } else {
-                    // If it's plain text, render as plain text
+                   
                     knowMoreElement.innerText = knowMoreValue;
                 }
             } else {
-                // If the field is empty, hide the section
+                
                 document.getElementById("knowMoreSection").style.display = "none";
             }
         }
 
-        // Fetch data from the database and populate the page
+        
         document.addEventListener("DOMContentLoaded", function () {
-            // Get the profession ID from the URL query parameter
+            
             const urlParams = new URLSearchParams(window.location.search);
             const professionId = urlParams.get("id");
 
             if (professionId) {
-                // Fetch profession details from the database
+                
                 fetch(`/get_profession?id=${professionId}`)
                     .then(response => response.json())
                     .then(profession => {
-                        // Populate the page with the fetched data
+                        
                         document.getElementById("detailsImage").src = profession.image || "default-placeholder.png";
                         document.getElementById("detailsName").innerText = profession.name;
                         document.getElementById("detailsDescription").innerText = profession.big_description;
 
-                        // Hide sections if data is null or empty
+                        
                         const sections = {
                             offeredBySection: profession.offered_by,
                             salarySection: profession.expected_salary,
@@ -314,13 +314,13 @@
                         for (const [sectionId, value] of Object.entries(sections)) {
                             const section = document.getElementById(sectionId);
                             if (!value) {
-                                section.style.display = "none"; // Hide the section if data is null
+                                section.style.display = "none"; 
                             } else {
-                                section.querySelector("p").innerText = value; // Populate the data
+                                section.querySelector("p").innerText = value; 
                             }
                         }
 
-                        // Populate the "Know More" section
+                        
                         populateKnowMoreSection(profession.know_more);
                     })
                     .catch(error => {
